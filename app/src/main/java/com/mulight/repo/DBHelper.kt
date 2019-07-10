@@ -15,6 +15,7 @@ abstract class DBHelper : RoomDatabase() {
     companion object {
         private var INSTANCE: DBHelper? = null
 
+        //get singleton to avoid multi instance of DB
         fun getInstance( ): DBHelper? {
             if (INSTANCE == null) {
                 synchronized(DBHelper::class) {

@@ -16,11 +16,14 @@ interface ImagesDAO {
     @Query("DELETE FROM images")
     fun deleteAll()
 
-    @Query("SELECT * FROM images")
+    @Query("SELECT * FROM images order by id desc")
     fun getAllImages(): LiveData<List<ImageDBModel>>
 
-
-
+    @Query(
+        "DELETE FROM images " +
+                "WHERE id = :id"
+    )
+    fun deleteByID(id: Long)
 
 
 }

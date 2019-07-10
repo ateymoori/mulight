@@ -10,6 +10,7 @@ import com.mulight.utils.enums.SavePhotoResult
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,7 +29,7 @@ class PublicMethods {
             var fos: FileOutputStream? = null
             try {
                 fos = FileOutputStream(imgPath)
-                bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos)
+                bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos as OutputStream?)
                 return ImageSaveResultModel(result = SavePhotoResult.SAVED, address = imgPath.absolutePath)
             } catch (e: Exception) {
                 return ImageSaveResultModel(result = SavePhotoResult.ERROR, address = null)

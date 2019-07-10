@@ -2,6 +2,12 @@ Change Log - Read Me (I'v combined CHANGELOG and README in this file)
 ==========
 
 
+Version 1.0.4 *(July 10, 2019 )*
+----------------------------
+
+ * Add: Android Test by JUnit 4.
+        2 Test module has been added to test DatabaseDAO(CRUD) and Public methods (Store file in Storage)  
+ 
 Version 1.0.3 *(July 10, 2019 )*
 ----------------------------
 

@@ -1,6 +1,7 @@
 package com.mulight.repo
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.mulight.utils.bases.PublicMethods
 import com.mulight.utils.entities.ImageDBModel
 import com.mulight.utils.entities.ImageModel
@@ -24,6 +25,8 @@ class MainRepository {
                 dbRepo.insertImage(ImageDBModel(title = title, date = date, address = address))
             }
         }
+
+        fun getAllPhotos(): LiveData<List<ImageDBModel>> = DBRepository().getImages()
     }
 
 }
