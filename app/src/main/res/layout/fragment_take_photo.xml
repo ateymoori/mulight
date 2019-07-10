@@ -1,10 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.take_photo.TakePhotoFragment">
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        tools:context=".ui.take_photo.TakePhotoFragment"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageView android:id="@+id/img" android:layout_width="200dp" android:layout_height="200dp"/>
 
-</FrameLayout>
+        <ImageView
+                android:id="@+id/img"
+                android:src="@drawable/place_holder"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="72dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"/>
+
+        <EditText
+                android:hint="Enter photo title"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content" android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/img" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.496"
+                android:id="@+id/photoTitle"/>
+
+        <Button
+                android:textColor="@color/white"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/blue_gradient"
+                android:text="Take again"
+                android:id="@+id/takeAgain"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/photoTitle"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/save"
+                app:layout_constraintHorizontal_bias="0.746"/>
+        <Button
+                android:textColor="@color/white"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/blue_gradient"
+                android:text="Save Photo"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                app:layout_constraintTop_toBottomOf="@+id/photoTitle"
+                android:layout_marginEnd="52dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="52dp"
+                android:id="@+id/save"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

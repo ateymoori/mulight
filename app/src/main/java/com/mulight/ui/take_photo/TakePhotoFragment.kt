@@ -14,11 +14,16 @@ import com.mulight.utils.bases.requestPermission
 import android.graphics.Bitmap
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import com.mulight.utils.bases.PublicMethods
+import com.mulight.utils.bases.toast
 import com.mulight.utils.entities.ImageModel
 import com.mulight.utils.enums.SavePhotoResult
 import kotlinx.android.synthetic.main.fragment_take_photo.*
 
 class TakePhotoFragment : Fragment() {
+    private val CAMERA_PERMISSION_CODE = 1000
+    private val CAMERA_REQUEST_CODE = 2000
     private var viewModel: TakePhotoViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,31 +35,32 @@ class TakePhotoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        checkPermission()
+        takePhoto()
         return inflater.inflate(R.layout.fragment_take_photo, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        takeAgain.setOnClickListener { takePhoto() }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        checkPermission()
+        takePhoto()
     }
 
-    private fun checkPermission() {
+    private fun takePhoto() {
         if (activity?.permissionGranted(CAMERA_PERMISSION) == true)
             openCamera()
         else
-            activity?.requestPermission(CAMERA_PERMISSION, 100)
+            activity?.requestPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_CODE)
     }
 
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(
             intent,
-            1000
+            CAMERA_REQUEST_CODE
         )
     }
 
@@ -63,16 +69,39 @@ class TakePhotoFragment : Fragment() {
         val extras = data?.extras
         val imageBitmap = extras?.get("data") as Bitmap?
         img.setImageBitmap(imageBitmap)
+        save.setOnClickListener { savePhoto(imageBitmap) }
     }
 
-    private fun savePhoto(img: Bitmap) {
-        val date = "2019-01-01"
-        val name = "sample name"
-        val data = ImageModel(image = img, name = name, date = date)
-        viewModel?.storePhoto(data)?.observe(this, Observer { onStorePhotoResult(it) })
+    private fun savePhoto(img: Bitmap?) {
+        when {
+            img == null -> {
+                getString(R.string.take_a_photo).toast()
+                return
+            }
+            photoTitle.text.isEmpty() -> {
+                photoTitle.error = getString(R.string.enter_title)
+                return
+            }
+            else -> {
+                val data = ImageModel(
+                    image = img,
+                    name = photoTitle.text.toString(),
+                    date = PublicMethods.getSystemDateTime()
+                )
+                viewModel?.storePhoto(data, activity)?.observe(this, Observer { onStorePhotoResult(it) })
+            }
+        }
     }
 
     private fun onStorePhotoResult(result: SavePhotoResult) {
-
+        when (result) {
+            SavePhotoResult.SAVED -> {
+                getString(R.string.saved).toast()
+                Navigation.findNavController(save).navigate(R.id.action_takePhotoFragment_to_dashboardFragment)
+            }
+            SavePhotoResult.ERROR -> {
+                getString(R.string.error).toast()
+            }
+        }
     }
 }

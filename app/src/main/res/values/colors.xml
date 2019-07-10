@@ -7,4 +7,8 @@
     <color name="gray">#ADADAD</color>
     <color name="transparent">#00000000</color>
     <color name="darkBlue">#19769f</color>
+
+
+    <color name="blueLighter">#00B4DB</color>
+    <color name="blueDarker">#0083B0</color>
 </resources>

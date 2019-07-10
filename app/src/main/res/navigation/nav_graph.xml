@@ -5,10 +5,13 @@
             app:startDestination="@id/dashboardFragment">
 
     <fragment android:id="@+id/dashboardFragment" android:name="com.mulight.ui.dashboard.DashboardFragment"
-              android:label="fragment_dashboard" tools:layout="@layout/fragment_dashboard">
+              android:label="Main" tools:layout="@layout/fragment_dashboard">
         <action android:id="@+id/action_dashboardFragment_to_takePhotoFragment"
                 app:destination="@id/takePhotoFragment"/>
     </fragment>
     <fragment android:id="@+id/takePhotoFragment" android:name="com.mulight.ui.take_photo.TakePhotoFragment"
-              android:label="fragment_take_photo" tools:layout="@layout/fragment_take_photo"/>
+              android:label="Take Photo" tools:layout="@layout/fragment_take_photo">
+        <action android:id="@+id/action_takePhotoFragment_to_dashboardFragment"
+                app:destination="@id/dashboardFragment"/>
+    </fragment>
 </navigation>

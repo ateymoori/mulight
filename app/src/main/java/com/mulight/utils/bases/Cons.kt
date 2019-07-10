@@ -5,6 +5,7 @@ import android.graphics.Typeface
 class Cons {
 
     companion object {
+        const val DB_NAME = "mulight.db"
         const val CAMERA_PERMISSION = "android.permission.CAMERA"
         private const val FONT_NORMAL = "fonts/roboto.ttf"
         private const val FONT_TITLE = "fonts/montserrat.ttf"

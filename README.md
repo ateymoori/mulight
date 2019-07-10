@@ -2,6 +2,13 @@ Change Log - Read Me (I'v combined CHANGELOG and README in this file)
 ==========
 
 
+Version 1.0.3 *(July 10, 2019 )*
+----------------------------
+
+ * Add: Store image in Internal storage.
+ * Add: Store image data in Local database by room.
+ * Note: I'm using Room because it supports LiveData and Observable pattern very perfect.
+ 
 Version 1.0.2 *(July 9, 2019 )*
 ----------------------------
 
@@ -16,7 +23,7 @@ Version 1.0.1 *(July 9, 2019 )*
 ----------------------------
 
  * Add: Gradle libraries
-     I am using Android Navigation Component with Single Activity Concept. 
+     I am using Android Navigation Component with Single Activity Concept (MVVM). 
      I'v added Nav Graph for define project schema and navigation 
      Also some base classes like Application, CustomTextView, Constants class and my single activity : Container Activity
 
