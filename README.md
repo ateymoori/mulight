@@ -13,6 +13,18 @@ Sample APK:
 
 <img src="http://devcast.ir/ml1.png" alt="Android Architecture " width=220 /> <img src="http://devcast.ir/ml2.png" alt="Android Architecture " width=220 /> <img src="http://devcast.ir/ml3.png" alt="Android Architecture " width=220 />
 
+## Technologies:
+
+* Kotlin as Main language(modern and clean codes-null safe-developing easier than Java)
+* MVVM as architecture
+* Android navigation component for single Activity and user more fragment instead of Activities(better performance-have reusable codes)
+* Android LiveData (avoid memory leak - remove direct connections between layers)
+* Repository pattern(have reusable, clean and independent codes)
+* Room as ORM (because it support LiveData very well)
+* File provider(to access Storage)
+* Junit for Android test
+
+
 Version 1.0.7 *(July 11, 2019 )*
 ----------------------------
 
