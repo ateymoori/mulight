@@ -1,10 +1,14 @@
 <resources>
-    <string name="app_name">MuLight Gallery</string>
+    <string name="app_name">MuLight</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error">Error in Saving Photo</string>
     <string name="saved">Photo has been saved Successfully</string>
     <string name="take_a_photo">You should take a photo</string>
     <string name="enter_title">Please enter photo title</string>
+    <string name="enter_photo_title">Enter photo title</string>
+    <string name="take_photo">Take photo</string>
+    <string name="save_photo">Save Photo</string>
+    <string name="list_is_empty_add_photos_by_clicking_fab_button">List is empty, Add photos by clicking FAB button
+    </string>
 </resources>

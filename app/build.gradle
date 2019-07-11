@@ -9,11 +9,16 @@ android {
         androidExtensions {
             experimental = true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
         applicationId "com.mulight"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 104
-        versionName "1.0.4"
+        versionCode 105
+        versionName "1.0.5"
         setProperty("archivesBaseName", "${versionName}_muLight")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,4 +62,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation 'com.loopeer.lib:shadow:0.0.4-beta3'
+
+    implementation "com.github.bumptech.glide:glide:4.9.0"
+    implementation "com.github.bumptech.glide:compiler:4.9.0"
+
 }

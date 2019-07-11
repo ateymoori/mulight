@@ -5,7 +5,7 @@
             app:startDestination="@id/dashboardFragment">
 
     <fragment android:id="@+id/dashboardFragment" android:name="com.mulight.ui.dashboard.DashboardFragment"
-              android:label="Main" tools:layout="@layout/fragment_dashboard">
+              android:label="MuLight Gallery" tools:layout="@layout/fragment_dashboard">
         <action android:id="@+id/action_dashboardFragment_to_takePhotoFragment"
                 app:destination="@id/takePhotoFragment"/>
     </fragment>

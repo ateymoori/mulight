@@ -7,6 +7,7 @@ class Cons {
     companion object {
         const val DB_NAME = "mulight.db"
         const val CAMERA_PERMISSION = "android.permission.CAMERA"
+        const val FILE_PERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE"
         private const val FONT_NORMAL = "fonts/roboto.ttf"
         private const val FONT_TITLE = "fonts/montserrat.ttf"
 

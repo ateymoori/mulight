@@ -1,6 +1,25 @@
-Change Log - Read Me (I'v combined CHANGELOG and README in this file)
-==========
+# Android MVVM Clean Architecture: Sample Gallery App
 
+<img src="http://devcast.ir/mulight.png" alt="Android Architecture Blueprints" width=200 />
+
+This repository contains a sample Android application that implements MVVM architecture using:
+    Kotlin, LiveData, Android Navigation Component(single Activity), ViewModel, Repository pattern, Observable Pattern, Room, RxJava and Android Test.
+
+
+
+Version 1.0.6 *(July 11, 2019 )*
+----------------------------
+
+ * Challenge: I wanted to take photo and store the photo in Internal Storage for avoid get new permission(Write External Storage),
+              but i figured out, Android just save low quality of images in Internal Storage as a thumbnail.
+              If i want to have high quality of images, i should use External storage and get extra permission.
+               
+
+Version 1.0.5 *(July 11, 2019 )*
+----------------------------
+
+ * Add: Complete Android Tests. Add Image Viewer and clean codes.
+ 
 
 Version 1.0.4 *(July 10, 2019 )*
 ----------------------------

@@ -26,7 +26,7 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 @RunWith(AndroidJUnit4::class)
 class ModulesTest {
 
-    lateinit var mContext: Context
+    private lateinit var mContext: Context
     @Before
     fun setup() {
         mContext = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext

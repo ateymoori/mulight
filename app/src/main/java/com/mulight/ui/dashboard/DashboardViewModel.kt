@@ -15,18 +15,4 @@ class DashboardViewModel : ViewModel() {
 
     fun getAllPhotos(): LiveData<List<ImageDBModel>> = MainRepository.getAllPhotos()
 
-
-
-    fun storePhoto(imageData: ImageModel, mContext: Context?): LiveData<SavePhotoResult> {
-        val result = MutableLiveData<SavePhotoResult>()
-        val disposable = mContext?.let {
-            MainRepository.savePhoto(imageData, it).subscribe { img ->
-                result.value = img.result
-            }
-        }
-        return result
-
-    }
-
-
 }

@@ -9,20 +9,20 @@ import com.mulight.R
 import android.provider.MediaStore
 import android.content.Intent
 import com.mulight.utils.bases.Cons.Companion.CAMERA_PERMISSION
-import com.mulight.utils.bases.permissionGranted
-import com.mulight.utils.bases.requestPermission
 import android.graphics.Bitmap
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.mulight.utils.bases.PublicMethods
-import com.mulight.utils.bases.toast
 import com.mulight.utils.entities.ImageModel
 import com.mulight.utils.enums.SavePhotoResult
 import kotlinx.android.synthetic.main.fragment_take_photo.*
+import android.content.ContentValues
+import com.mulight.utils.bases.*
+import com.mulight.utils.bases.Cons.Companion.FILE_PERMISSION
+
 
 class TakePhotoFragment : Fragment() {
-    private val CAMERA_PERMISSION_CODE = 1000
+    private val PERMISSION_CODE = 1000
     private val CAMERA_REQUEST_CODE = 2000
     private var viewModel: TakePhotoViewModel? = null
 
@@ -50,14 +50,21 @@ class TakePhotoFragment : Fragment() {
     }
 
     private fun takePhoto() {
-        if (activity?.permissionGranted(CAMERA_PERMISSION) == true)
-            openCamera()
-        else
-            activity?.requestPermission(CAMERA_PERMISSION, CAMERA_PERMISSION_CODE)
+        if (activity?.permissionGranted(FILE_PERMISSION) == false || activity?.permissionGranted(FILE_PERMISSION) == false) {
+            activity?.requestGroupPermission(arrayOf(CAMERA_PERMISSION, FILE_PERMISSION), PERMISSION_CODE)
+            return
+        }
+
+        openCamera()
+
     }
 
     private fun openCamera() {
+
+
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+
         startActivityForResult(
             intent,
             CAMERA_REQUEST_CODE
@@ -68,6 +75,7 @@ class TakePhotoFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         val extras = data?.extras
         val imageBitmap = extras?.get("data") as Bitmap?
+
         img.setImageBitmap(imageBitmap)
         save.setOnClickListener { savePhoto(imageBitmap) }
     }
@@ -97,7 +105,7 @@ class TakePhotoFragment : Fragment() {
         when (result) {
             SavePhotoResult.SAVED -> {
                 getString(R.string.saved).toast()
-                Navigation.findNavController(save).navigate(R.id.action_takePhotoFragment_to_dashboardFragment)
+                Navigation.findNavController(save).popBackStack()
             }
             SavePhotoResult.ERROR -> {
                 getString(R.string.error).toast()

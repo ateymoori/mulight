@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+    <com.loopeer.shadow.ShadowView
+            android:id="@+id/shadow_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:foreground="?attr/selectableItemBackground"
+            app:cornerRadius="0dp"
+            app:shadowMargin="12dp"
+            app:shadowRadius="20dp">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <ImageView
+                    android:id="@+id/img"
+                    android:src="@drawable/place_holder"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            <RelativeLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:paddingStart="12dp"
+                    android:background="@drawable/shadow_bottom_darker"
+                    android:layout_height="32dp">
+                <TextView
+                        android:id="@+id/title"
+                        android:textColor="@color/white"
+                        android:text="Kuala Lumpur, Twin Towers"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </com.loopeer.shadow.ShadowView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

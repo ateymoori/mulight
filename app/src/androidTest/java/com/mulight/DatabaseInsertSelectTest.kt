@@ -12,7 +12,7 @@ import org.junit.Assert.*
 import org.junit.Before
 
 @RunWith(AndroidJUnit4::class)
-class DatabaseDAOTest {
+class DatabaseInsertSelectTest {
 
     private var db: DBHelper? = null
     @Before
@@ -21,18 +21,19 @@ class DatabaseDAOTest {
     }
 
     @Test
-    fun checkDB() {
+    fun checkInsertDB() {
         Handler(Looper.getMainLooper()).post {
-            db?.imagesDAO()?.insert(ImageDBModel(id = -1, title = "test", date = "now", address = ""))
-            db?.imagesDAO()?.getAllImages()?.observeForever {
-                if (it.isEmpty())
-                    fail("Database is empty!")
+            db?.imagesDAO()?.insert(ImageDBModel(id = -1, title = "test", date = "now", address = "")).apply {
+                db?.imagesDAO()?.getAllImages()?.observeForever {
+                    if (it.isEmpty())
+                        fail("Database is empty!")
+                }
             }
         }
     }
 
     @After
     fun removeTests() {
-        db?.imagesDAO()?.deleteByID(-1)
+       //db?.imagesDAO()?.deleteByID(-1)
     }
 }

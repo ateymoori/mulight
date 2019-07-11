@@ -10,27 +10,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-        <ImageView
-                android:id="@+id/img"
-                android:src="@drawable/place_holder"
-                android:layout_width="260dp"
-                android:layout_height="260dp"
+        <com.loopeer.shadow.ShadowView
+                android:id="@+id/shadow_view"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="72dp"
+                android:layout_marginTop="48dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"/>
+                app:layout_constraintHorizontal_bias="0.497"
+                android:elevation="16dp"
+                android:foreground="?attr/selectableItemBackground"
+                app:cornerRadius="0dp"
+                app:shadowMargin="12dp"
+                app:shadowRadius="20dp">
+            <ImageView
+                    android:id="@+id/img"
+                    android:src="@drawable/place_holder"
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
+                    android:layout_height="match_parent"/>
+        </com.loopeer.shadow.ShadowView>
+
 
         <EditText
-                android:hint="Enter photo title"
+                android:hint="@string/enter_photo_title"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content" android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@+id/img" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shadow_view" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.496"
                 android:id="@+id/photoTitle"/>
@@ -39,14 +49,14 @@
                 android:textColor="@color/white"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/blue_gradient"
-                android:text="Take again"
+                android:text="@string/take_photo"
                 android:id="@+id/takeAgain"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 app:layout_constraintTop_toBottomOf="@+id/photoTitle"
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="44dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/save"
                 app:layout_constraintHorizontal_bias="0.746"/>
@@ -54,13 +64,13 @@
                 android:textColor="@color/white"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:background="@drawable/blue_gradient"
-                android:text="Save Photo"
+                android:text="@string/save_photo"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 app:layout_constraintTop_toBottomOf="@+id/photoTitle"
                 android:layout_marginEnd="52dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="44dp"
                 android:id="@+id/save"/>
 
 
