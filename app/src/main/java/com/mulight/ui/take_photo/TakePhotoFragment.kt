@@ -5,23 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mulight.R
 import android.provider.MediaStore
 import android.content.Intent
 import com.mulight.utils.bases.Cons.Companion.CAMERA_PERMISSION
-import android.graphics.Bitmap
-import androidx.lifecycle.Observer
+import android.os.Environment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.mulight.utils.entities.ImageModel
 import com.mulight.utils.enums.SavePhotoResult
 import kotlinx.android.synthetic.main.fragment_take_photo.*
-import android.content.ContentValues
 import com.mulight.utils.bases.*
 import com.mulight.utils.bases.Cons.Companion.FILE_PERMISSION
+import java.io.File
+import com.mulight.R
+import androidx.core.content.FileProvider
+import android.content.Context
+import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import com.mulight.BuildConfig
+import com.mulight.utils.entities.ImageModel
+import java.io.IOException
 
 
 class TakePhotoFragment : Fragment() {
+    private var mPhotoFile: File? = null
     private val PERMISSION_CODE = 1000
     private val CAMERA_REQUEST_CODE = 2000
     private var viewModel: TakePhotoViewModel? = null
@@ -54,35 +60,54 @@ class TakePhotoFragment : Fragment() {
             activity?.requestGroupPermission(arrayOf(CAMERA_PERMISSION, FILE_PERMISSION), PERMISSION_CODE)
             return
         }
-
         openCamera()
+    }
 
+
+    private fun createImageFile(): File {
+        val mFileName = PublicMethods.getUnixTime().toString()
+        val storageDir = activity?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(mFileName, ".jpg", storageDir)
     }
 
     private fun openCamera() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (getCTX()?.packageManager?.let { takePictureIntent.resolveActivity(it) } != null) {
+            var photoFile: File? = null
+            try {
+                photoFile = createImageFile()
+            } catch (ex: IOException) {
+                ex.printStackTrace()
+            }
 
+            if (photoFile != null) {
+                val photoURI = getCTX()?.let {
+                    FileProvider.getUriForFile(
+                        it,
+                        BuildConfig.APPLICATION_ID + ".provider",
+                        photoFile
+                    )
+                }
 
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                mPhotoFile = photoFile
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE)
 
-
-        startActivityForResult(
-            intent,
-            CAMERA_REQUEST_CODE
-        )
+            }
+        }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val extras = data?.extras
-        val imageBitmap = extras?.get("data") as Bitmap?
+        activity?.let { Glide.with(it).load(mPhotoFile).into(img) }
+        save.setOnClickListener { savePhoto(mPhotoFile) }
 
-        img.setImageBitmap(imageBitmap)
-        save.setOnClickListener { savePhoto(imageBitmap) }
     }
 
-    private fun savePhoto(img: Bitmap?) {
+    private fun savePhoto(mPhotoFile: File?) {
         when {
-            img == null -> {
+            mPhotoFile == null -> {
                 getString(R.string.take_a_photo).toast()
                 return
             }
@@ -92,7 +117,7 @@ class TakePhotoFragment : Fragment() {
             }
             else -> {
                 val data = ImageModel(
-                    image = img,
+                    image = mPhotoFile,
                     name = photoTitle.text.toString(),
                     date = PublicMethods.getSystemDateTime()
                 )
@@ -112,4 +137,8 @@ class TakePhotoFragment : Fragment() {
             }
         }
     }
+    private fun getCTX(): Context? {
+        return activity ?: MyApplication.instance?.applicationContext
+    }
+
 }

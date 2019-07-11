@@ -48,7 +48,7 @@ class PublicMethods {
             return sdf.format(Date())
         }
 
-        private fun getUnixTime(): Long = System.currentTimeMillis() / 1000L
+          fun getUnixTime(): Long = System.currentTimeMillis() / 1000L
 
     }
 }

@@ -1,11 +1,9 @@
 package com.mulight.utils.entities
 
-import android.graphics.Bitmap
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import java.io.File
 
 data class ImageModel(
-    val image: Bitmap,
+    val image: File,
     val name: String,
     val date: String
 )

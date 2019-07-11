@@ -1,19 +1,31 @@
-# Android MVVM Clean Architecture: Sample Gallery App
+# Android Architecture Component (MVVM): Sample Gallery App
 
-<img src="http://devcast.ir/mulight.png" alt="Android Architecture Blueprints" width=200 />
+<img src="http://devcast.ir/mulight.png" alt="Android Architecture " width=200 />
 
-This repository contains a sample Android application that implements MVVM architecture using:
-    Kotlin, LiveData, Android Navigation Component(single Activity), ViewModel, Repository pattern, Observable Pattern, Room, RxJava and Android Test.
+This repository contains a sample Android application that implements MVVM Android architecture component using:
+    Kotlin, LiveData, Android Navigation Component(single Activity), ViewModel, Repository pattern, Observable Pattern, Room, File provider, RxJava and Android Test.
+
+Sample APK:
+<a href="http://devcast.ir/1.0.7_muLight-debug.apk">http://devcast.ir/1.0.7_muLight-debug.apk</a>
+
+<img src="http://devcast.ir/schema.png" alt="Android Architecture " width=600 />
 
 
+<img src="http://devcast.ir/ml1.png" alt="Android Architecture " width=220 /> <img src="http://devcast.ir/ml2.png" alt="Android Architecture " width=220 /> <img src="http://devcast.ir/ml3.png" alt="Android Architecture " width=220 />
 
+Version 1.0.7 *(July 11, 2019 )*
+----------------------------
+
+ * Fix: Take photo and store image bug fixed. now i am using External storage and File provider.
+ * Add: Image viewer not support zoom in/zoom out but multi touching.
+         
 Version 1.0.6 *(July 11, 2019 )*
 ----------------------------
 
- * Challenge: I wanted to take photo and store the photo in Internal Storage for avoid get new permission(Write External Storage),
-              but i figured out, Android just save low quality of images in Internal Storage as a thumbnail.
+ * Challenge: I wanted to take and store photo in Internal Storage for avoid get new permission(Write External Storage),
+              but i figured out that, Android just save low quality of images in Internal Storage as a thumbnail.
               If i want to have high quality of images, i should use External storage and get extra permission.
-               
+              Using external storage is not easy like before, i should use File Provider.
 
 Version 1.0.5 *(July 11, 2019 )*
 ----------------------------
@@ -56,3 +68,8 @@ Version 1.0.0 *(July 9, 2019 )*
 ----------------------------
 
 First commit. 
+
+
+----------------------------
+AmirHossein Teymoori
+teymoori.net@gmail.com

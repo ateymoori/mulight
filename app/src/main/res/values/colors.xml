@@ -11,4 +11,5 @@
 
     <color name="blueLighter">#00B4DB</color>
     <color name="blueDarker">#0083B0</color>
+    <color name="black">#000</color>
 </resources>
